@@ -1,0 +1,27 @@
+.main__page--login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    width: 100%;
+    max-width: 460px;
+    background-color: #fcfafa;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 40px 30px;
+
+    .mat__button--send {
+      display: flex;
+      justify-content: center;
+
+      button {
+        max-width: 280px;
+        height: 48px;
+      }
+    }
+  }
+}

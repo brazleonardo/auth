@@ -1,0 +1,38 @@
+.mat__main--nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .mat__group--logo,
+  .mat__menu-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mat__search--input {
+    width: 100%;
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 4px;
+
+    input {
+      width: calc(100% - 30px);
+      background-color: transparent;
+      border: 0;
+      outline: none;
+    }
+
+    .mat__icon--search {
+      color: #333;
+    }
+  }
+
+}

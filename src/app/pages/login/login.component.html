@@ -1,1 +1,24 @@
-<p>login works!</p>
+<main class="main__page--login">
+  <form>
+    <mat-form-field class="w-full">
+      <mat-label>Login</mat-label>
+      <input matInput placeholder="Digite seu e-mail">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Senha</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua senha">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="mat__button--send">
+      <button mat-flat-button color="primary" class="w-full">
+        Entrar
+      </button>
+    </div>
+
+  </form>
+
+</main>
