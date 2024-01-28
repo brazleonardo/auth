@@ -1,18 +1,18 @@
-.main__page--login {
-  width: 100vw;
-  height: 100vh;
+.section__page--login {
+  width: 460px;
+  height: calc(100vh - 200px);
+  min-height: 560px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  padding: 40px 60px;
 
   form {
     width: 100%;
-    max-width: 460px;
-    background-color: #fcfafa;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 40px 30px;
 
     .mat__button--send {
       display: flex;
@@ -20,8 +20,12 @@
 
       button {
         max-width: 280px;
-        height: 48px;
+        height: 60px;
       }
     }
+  }
+
+  .auth__registe {
+    margin-top: 40px;
   }
 }
