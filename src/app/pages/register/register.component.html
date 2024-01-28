@@ -1,8 +1,13 @@
-<section class="section__page--login">
-  <h1>Minha Conta</h1>
+<section class="section__page--register">
+  <h1>Criar a Conta</h1>
   <form>
     <mat-form-field class="w-full">
-      <mat-label>Login</mat-label>
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Digite seu nome">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>E-mail</mat-label>
       <input matInput placeholder="Digite seu e-mail">
     </mat-form-field>
 
@@ -22,8 +27,7 @@
 
   </form>
 
-  <p>Esqueceu sua <a href="#">senha</a>?</p>
 
-  <a routerLink="/user/register" class="auth__register">Cadastre-se</a>
+  <a routerLink="/user/auth" class="return__auth">Voltar</a>
 
 </section>
