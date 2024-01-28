@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="mat__main--nav">
   <div class="mat__group--logo">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button aria-label="Menu">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Auth</span>
@@ -12,13 +12,15 @@
   </div>
 
   <div class="mat__menu-content">
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Configurações">
+    <button mat-icon-button aria-label="Configurações">
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Sair da aplicação">
+    <button mat-icon-button aria-label="Sair da aplicação">
       <mat-icon>logout</mat-icon>
     </button>
   </div>
 </mat-toolbar>
 
-<router-outlet />
+<main class="app__main">
+  <router-outlet />
+</main>
