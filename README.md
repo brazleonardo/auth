@@ -2,9 +2,9 @@
 
 Esse é um projeto com o Angular CLI na versão 17.1.1.
 
-## Development server
+## Inciar o servidor localhost
 
-Para rodar o servidor em ambiente local rode o seguinte comando `ng serve`. Url para acessar no navegador `http://localhost:4200/`.
+Para rodar o servidor em ambiente localhost rode o seguinte comando `ng serve`. Url para acessar no navegador `http://localhost:4200/`.
 
 ## Build
 
