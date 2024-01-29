@@ -1,21 +1,21 @@
 <section class="section__page--login">
   <h1>Minha Conta</h1>
-  <form>
+  <form [formGroup]="loginForm" [ngClass]="{'form-loading': isLoading()}" (ngSubmit)="onSubmit()">
     <mat-form-field class="w-full">
       <mat-label>Login</mat-label>
-      <input matInput placeholder="Digite seu e-mail">
+      <input matInput placeholder="Digite seu usuário" name="username" formControlName="username">
     </mat-form-field>
 
     <mat-form-field class="w-full">
       <mat-label>Senha</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua senha">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <input matInput [type]="hide ? 'password' : 'text'" placeholder="Digite sua senha" name="password" formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar senha'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
 
     <div class="mat__button--send">
-      <button mat-flat-button color="primary" class="w-full">
+      <button mat-flat-button color="primary" class="w-full" type="submit" [disabled]="!loginForm.valid">
         Entrar
       </button>
     </div>
