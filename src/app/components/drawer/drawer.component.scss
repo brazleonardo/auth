@@ -1,0 +1,22 @@
+.main__container--drawer {
+  width: 100%;
+
+  .mat__drawer--list {
+    .mat__drawer--list-item {
+      width: 100%;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+
+      &:not(:last-of-type){
+        border-bottom: 1px solid #e6e6e6;
+      }
+
+      &:hover {
+        background-color: #f8f8f8;
+      }
+    }
+
+  }
+}

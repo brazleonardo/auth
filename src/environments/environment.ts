@@ -1,4 +1,4 @@
 export const environment = {
   appName: 'auth',
-  apiUrl: 'http://localhost/api'
+  apiUrl: 'https://dummyjson.com'
 };

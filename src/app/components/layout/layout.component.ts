@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
+import { DrawerComponent } from '@@components/drawer/drawer.component';
+
 import { AuthService } from '@@services/auth.service';
 
 @Component({
@@ -19,7 +21,8 @@ import { AuthService } from '@@services/auth.service';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    DrawerComponent
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
