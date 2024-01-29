@@ -15,5 +15,3 @@ Rode o comando `ng build` para buildar o projeto. Após rodar o comando será ge
 Estou utilizando a API FAKE (dummyJSON)
 
 Segue o link: https://dummyjson.com/docs/auth
-
-# auth
