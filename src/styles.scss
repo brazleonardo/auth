@@ -67,3 +67,12 @@ form {
 .mdc-button__label {
   font-weight: 500;
 }
+
+.section__page--container {
+  width: calc(100% - 60px);
+  padding: 0 30px;
+
+  .section__page--title {
+    font-weight: 500;
+  }
+}
