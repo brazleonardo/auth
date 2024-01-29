@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from '@@services/auth.service';
@@ -14,6 +15,7 @@ import { AuthService } from '@@services/auth.service';
   imports: [
     RouterOutlet,
     MatToolbarModule,
+    MatSidenavModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,

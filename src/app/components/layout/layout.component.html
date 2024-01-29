@@ -1,26 +1,34 @@
-<mat-toolbar color="primary" class="mat__main--nav">
-  <div class="mat__group--logo">
-    <button mat-icon-button aria-label="Menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Auth</span>
-  </div>
 
-  <div class="mat__search--input">
-    <input type="text" placeholder="Buscar">
-    <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
-  </div>
+<mat-drawer-container class="mat__drawer--container">
+  <mat-drawer #drawer mode="side" class="mat__drawer--menu">
 
-  <div class="mat__menu-content">
-    <button mat-icon-button aria-label="Configurações">
-      <mat-icon>settings</mat-icon>
-    </button>
-    <button mat-icon-button aria-label="Sair da aplicação" (click)="onLogout()">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </div>
-</mat-toolbar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar color="primary" class="mat__main--nav">
+      <div class="mat__group--logo">
+        <button mat-icon-button aria-label="Menu" (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Auth</span>
+      </div>
 
-<main class="app__main">
-  <router-outlet />
-</main>
+      <div class="mat__search--input">
+        <input type="text" placeholder="Buscar">
+        <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
+      </div>
+
+      <div class="mat__menu-content">
+        <button mat-icon-button aria-label="Configurações">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="Sair da aplicação" (click)="onLogout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+
+    <main class="app__main">
+      <router-outlet />
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>
