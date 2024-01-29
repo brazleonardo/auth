@@ -40,6 +40,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: Page404Component
+    component: Page404Component,
+    pathMatch: 'full'
   },
 ];

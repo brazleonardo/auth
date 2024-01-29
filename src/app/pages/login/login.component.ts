@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from '@@services/auth.service';
+import { LocalStorageService } from '@@services/local-storage.service';
 import { environment } from '@@environments/environment';
 
 @Component({
@@ -32,6 +33,7 @@ export class LoginComponent {
   isLoading = signal(false);
   protected loginForm!: FormGroup;
   protected authService = inject(AuthService);
+  protected localStorage = inject(LocalStorageService);
 
 
   constructor(private router: Router) {
@@ -47,10 +49,10 @@ export class LoginComponent {
       this.isLoading.set(true);
       this.authService.signIn(username, password).subscribe({
         next: (response) => {
-          localStorage.setItem(`${environment.appName}_token`, response.token);
+          this.localStorage.set(`${environment.appName}_token`, response.token);
           this.isLoading.set(false);
           this.authService.onAutheticate(true);
-          this.router.navigateByUrl("/");
+          this.router.navigateByUrl("/home");
         }
       });
     }
