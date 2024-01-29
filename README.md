@@ -8,8 +8,7 @@ Para rodar o servidor em ambiente local rode o seguinte comando `ng serve`. Url 
 
 ## Build
 
-Rode o comando `ng build` para buildar o projeto, que sera gerado na pasta `dist/`.
-
+Rode o comando `ng build` para buildar o projeto. Após rodar o comando será gerado na pasta `dist/`.
 
 ## Sobre o Projeto
 
