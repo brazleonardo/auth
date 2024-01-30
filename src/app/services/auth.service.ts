@@ -31,7 +31,7 @@ export class AuthService {
 
   signOut(){
     this.localStorage.remove(`${environment.appName}_token`);
-    this.router.navigateByUrl('user/auth');
+    this.router.navigateByUrl('auth/sign-in');
   }
 
 }

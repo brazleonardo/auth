@@ -12,7 +12,7 @@ import { LocalStorageService } from '@@services/local-storage.service';
 import { environment } from '@@environments/environment';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-sign-in',
   standalone: true,
   imports: [
     CommonModule,
@@ -25,16 +25,15 @@ import { environment } from '@@environments/environment';
     MatButtonModule,
     MatIconModule
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss'
 })
-export class LoginComponent {
+export class SignInComponent {
   hide = true;
   isLoading = signal(false);
   protected loginForm!: FormGroup;
   protected authService = inject(AuthService);
   protected localStorage = inject(LocalStorageService);
-
 
   constructor(private router: Router) {
     this.loginForm = new FormGroup({
@@ -57,5 +56,4 @@ export class LoginComponent {
       });
     }
   }
-
 }

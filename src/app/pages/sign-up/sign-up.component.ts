@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-sign-up',
   standalone: true,
   imports: [
     RouterModule,
@@ -18,9 +18,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatIconModule
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.scss'
 })
-export class RegisterComponent {
+export class SignUpComponent {
   hide = true
 }
