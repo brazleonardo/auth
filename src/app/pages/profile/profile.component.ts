@@ -10,7 +10,7 @@ import { AuthService } from '@@services/auth.service';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
-export class ProfileComponent {
+export default class ProfileComponent {
   protected authService = inject(AuthService);
 
   constructor() {

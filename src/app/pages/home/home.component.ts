@@ -10,7 +10,7 @@ import { AuthService } from '@@services/auth.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export default class HomeComponent {
   protected authService = inject(AuthService);
 
   constructor() {
@@ -20,7 +20,7 @@ export class HomeComponent {
   getUser(){
     this.authService.me().subscribe({
       next: (response) => {
-        console.log(response)
+        console.log(response);
       }
     });
   }

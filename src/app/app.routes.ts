@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { loginGuard } from '@@guards/login.guard';
 import { authGuard } from './guards/auth.guard';
 
 import { LayoutComponent } from '@@components/layout/layout.component';
@@ -7,8 +8,6 @@ import { LayoutAuthComponent } from '@@components/layout-auth/layout-auth.compon
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
 
 import { Page404Component } from './pages/page404/page404.component';
 
@@ -16,7 +15,7 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: 'user/auth',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'user',
@@ -24,7 +23,8 @@ export const routes: Routes = [
     children: [
       {
         path: 'auth',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [loginGuard]
       },
       {
         path: 'register',
@@ -37,15 +37,20 @@ export const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
         path: 'home',
-        component: HomeComponent,
+        loadComponent: () => import('./pages/home/home.component'),
         canActivate: [authGuard],
       },
       {
         path: 'profile',
-        component: ProfileComponent,
+        loadComponent: () => import('./pages/profile/profile.component'),
         canActivate: [authGuard],
-      }
+      },
     ]
   },
   {
