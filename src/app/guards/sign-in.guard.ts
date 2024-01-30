@@ -10,7 +10,7 @@ export const signInGuard: CanActivateFn = (route, state) => {
   const hasToken = !!localStorage.get(`${environment.appName}_token`);
 
   if(hasToken && state.url === '/auth/sign-in'){
-    return router.navigateByUrl('home');
+    return router.navigateByUrl('/admin/home');
   }
 
   return true;

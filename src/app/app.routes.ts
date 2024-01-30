@@ -6,8 +6,8 @@ import { authGuard } from './guards/auth.guard';
 import { LayoutComponent } from '@@components/layout/layout.component';
 import { LayoutAuthComponent } from '@@components/layout-auth/layout-auth.component';
 
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { SignInComponent } from './pages/auth/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/auth/sign-up/sign-up.component';
 
 import { Page404Component } from './pages/page404/page404.component';
 
@@ -33,7 +33,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'admin',
     component: LayoutComponent,
     children: [
       {
@@ -43,12 +43,12 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        loadComponent: () => import('./pages/home/home.component'),
+        loadComponent: () => import('./pages/admin/home/home.component'),
         canActivate: [authGuard],
       },
       {
         path: 'profile',
-        loadComponent: () => import('./pages/profile/profile.component'),
+        loadComponent: () => import('./pages/admin/profile/profile.component'),
         canActivate: [authGuard],
       },
     ]

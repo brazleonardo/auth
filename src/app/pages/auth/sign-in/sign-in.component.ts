@@ -51,7 +51,7 @@ export class SignInComponent {
           this.localStorage.set(`${environment.appName}_token`, response.token);
           this.isLoading.set(false);
           this.authService.onAutheticate(true);
-          this.router.navigateByUrl("/home");
+          this.router.navigateByUrl("/admin/home");
         }
       });
     }
