@@ -18,7 +18,6 @@ export class ProductComponent implements OnInit  {
   dataSource = new MatTableDataSource<Product>([]);
 
   ngOnInit(): void {
-    console.log("data", this.data);
     this.dataSource = new MatTableDataSource<Product>(this.data);
   }
 }
