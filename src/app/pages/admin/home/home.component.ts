@@ -34,7 +34,8 @@ export default class HomeComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.products(this.data().limit, this.data().skip).subscribe({
+    this.productService.products(this.data().limit, this.data().skip)
+    .subscribe({
       next: (response) => {
         this.data.set(response);
       }
