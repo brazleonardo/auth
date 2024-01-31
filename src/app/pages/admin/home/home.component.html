@@ -2,6 +2,47 @@
 
   <h1 class="section__page--title">Página home</h1>
 
-  <app-product [data]="data().products" />
+  <table mat-table #table [dataSource]="dataSource" class="mat__table--products mat-elevation-z8" aria-describedby="Tabela de listagem de produtos">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Thumbnail Column -->
+    <ng-container matColumnDef="thumbnail">
+      <th mat-header-cell *matHeaderCellDef> Foto </th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.thumbnail" [alt]="element.title" class="mat__table--thumbnail" />
+      </td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Título </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Brand Column -->
+    <ng-container matColumnDef="brand">
+      <th mat-header-cell *matHeaderCellDef> Marca </th>
+      <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Categoria </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Preço </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
 </section>

@@ -1,16 +1,16 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
-import { ProductComponent } from '@@components/table/product/product.component';
 
 import { AuthService } from '@@services/auth.service';
 import { ProductService } from '@@services/product.service';
-import { DataProducts } from '@@interfaces/product';
+import { DataProducts, Product } from '@@interfaces/product';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, ProductComponent],
+  imports: [RouterModule, MatTableModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -23,6 +23,9 @@ export default class HomeComponent implements OnInit {
     skip: 0,
     limit: 15,
   });
+
+  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'brand', 'category', 'price'];
+  dataSource = new MatTableDataSource<Product>([]);
 
   ngOnInit() {
     this.getUser();
@@ -38,6 +41,7 @@ export default class HomeComponent implements OnInit {
     .subscribe({
       next: (response) => {
         this.data.set(response);
+        this.dataSource = new MatTableDataSource<Product>(this.data().products);
       }
     })
   }
