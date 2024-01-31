@@ -17,7 +17,7 @@ export class AuthService {
   public isAutheticate = signal(false);
 
   signIn(username: string, password: string){
-    const data = {username, password, expiresInMins: 2};
+    const data = {username, password, expiresInMins: 60};
     return this.http.post<Auth>('auth/login', data);
   }
 

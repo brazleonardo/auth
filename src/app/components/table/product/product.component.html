@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" aria-describedby="Tabela de listagem de produtos">
+<table mat-table [dataSource]="dataSource" class="mat__table--products mat-elevation-z8" aria-describedby="Tabela de listagem de produtos">
 
   <!-- ID Column -->
   <ng-container matColumnDef="id">
@@ -9,7 +9,9 @@
   <!-- Thumbnail Column -->
   <ng-container matColumnDef="thumbnail">
     <th mat-header-cell *matHeaderCellDef> Foto </th>
-    <td mat-cell *matCellDef="let element"> {{element.thumbnail}} </td>
+    <td mat-cell *matCellDef="let element">
+      <img [src]="element.thumbnail" [alt]="element.title" class="mat__table--thumbnail" />
+    </td>
   </ng-container>
 
   <!-- Title Column -->

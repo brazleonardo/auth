@@ -24,18 +24,13 @@ export default class HomeComponent implements OnInit {
     limit: 15,
   });
 
-
   ngOnInit() {
     this.getUser();
     this.getProducts();
   }
 
   getUser(){
-    this.authService.me().subscribe({
-      next: (response) => {
-        console.log(response);
-      }
-    });
+    this.authService.me().subscribe();
   }
 
   getProducts() {
