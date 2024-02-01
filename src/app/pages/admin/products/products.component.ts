@@ -75,7 +75,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   handlePageEvent(e: PageEvent) {
-    console.log(e);
     this.pageEvent = e;
     this.pageLength.set(e.length);
     this.pageSize.set(e.pageSize);
