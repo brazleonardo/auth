@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, inject, signal, } from '@a
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule, PageEvent, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 
 import { AuthService } from '@@services/auth.service';
@@ -31,21 +31,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   protected productService = inject(ProductService);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private paginatorTranslate: MatPaginatorIntl) {
-    paginatorTranslate.nextPageLabel = 'Próxima Página';
-    paginatorTranslate.previousPageLabel = 'Página Anterior';
-    paginatorTranslate.lastPageLabel = 'Última Página';
-    paginatorTranslate.firstPageLabel = 'Primeira Página';
-    paginatorTranslate.itemsPerPageLabel = 'Registros por Página';
-    paginatorTranslate.getRangeLabel = (page: number, pageSize: number, length: number) => {
-      if (length == 0 || pageSize == 0) { return `0 de ${length}`; }
-      length = Math.max(length, 0);
-      const startIndex = page * pageSize;
-      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
-      return `${startIndex + 1} - ${endIndex} de ${length}`;
-    };
-  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

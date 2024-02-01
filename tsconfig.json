@@ -29,6 +29,7 @@
       "@@constants/*": ["./src/app/constants/*"],
       "@@environments/*": ["./src/environments/*"],
       "@@guards/*": ["./src/app/guards/*"],
+      "@@helpers/*": ["./src/app/helpers/*"],
       "@@interfaces/*": ["./src/app/interfaces/*"],
       "@@services/*": ["./src/app/services/*"],
     }
