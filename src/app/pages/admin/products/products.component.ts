@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, ViewChild, inject, signal, } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
@@ -25,10 +25,15 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   protected pageIndex = signal(0);
   protected pageSize = signal(15);
 
+  protected limit = signal(15);
   protected skip = signal(0);
 
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
+
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -38,6 +43,18 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getUser();
+    this.route.queryParamMap.subscribe(params => {
+      const paramLimit = params.get('limit');
+      const paramSkip = params.get('skip');
+      if(paramLimit && this.pageSizeOptions.includes(Number(paramLimit))){
+        this.limit.set(Number(paramLimit));
+        this.pageSize.set(Number(paramLimit));
+      }
+      if(paramSkip){
+        this.skip.set(Number(paramSkip));
+      }
+    });
+
     this.getProducts();
   }
 
@@ -46,23 +63,37 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   getProducts() {
-    this.productService.products(this.pageSize(), this.skip())
+    this.productService.products(this.limit(), this.skip())
     .subscribe({
       next: (response) => {
         this.pageLength.set(response.total);
+        this.pageIndex.set(response.skip / this.limit())
         this.skip.set(response.skip);
         this.dataSource = new MatTableDataSource<Product>(response.products);
       }
-    })
+    });
   }
 
   handlePageEvent(e: PageEvent) {
+    console.log(e);
     this.pageEvent = e;
     this.pageLength.set(e.length);
     this.pageSize.set(e.pageSize);
     this.pageIndex.set(e.pageIndex);
 
+    this.limit.set(e.pageSize);
     this.skip.set(e.pageIndex * e.pageSize);
+
+    const queryParams = {
+      limit: e.pageSize,
+      skip: this.skip(),
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
 
     this.getProducts();
   }
