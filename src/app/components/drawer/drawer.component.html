@@ -1,6 +1,10 @@
 <div class="main__container--drawer">
   <mat-list role="list" class="mat__drawer--list">
-    <mat-list-item routerLink="/admin/home" matRipple role="listitem" class="mat__drawer--list-item">Home</mat-list-item>
-    <mat-list-item routerLink="/admin/profile" matRipple role="listitem" class="mat__drawer--list-item">Perfil</mat-list-item>
+    <mat-list-item role="listitem" class="mat__drawer--list-item">
+      <a routerLink="/admin/profile" routerLinkActive="active" matRipple>Perfil</a>
+    </mat-list-item>
+    <mat-list-item role="listitem" class="mat__drawer--list-item">
+      <a routerLink="/admin/home" routerLinkActive="active" matRipple>Produtos</a>
+    </mat-list-item>
   </mat-list>
 </div>

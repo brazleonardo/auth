@@ -1,4 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
@@ -10,7 +11,7 @@ import { DataProducts, Product } from '@@interfaces/product';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, MatTableModule],
+  imports: [CommonModule, RouterModule, MatTableModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -24,7 +25,7 @@ export default class HomeComponent implements OnInit {
     limit: 15,
   });
 
-  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'brand', 'category', 'price'];
+  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'stock', 'brand', 'category',  'price'];
   dataSource = new MatTableDataSource<Product>([]);
 
   ngOnInit() {
@@ -44,6 +45,10 @@ export default class HomeComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Product>(this.data().products);
       }
     })
+  }
+
+  public formatter(value: number): string {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
   }
 
 }

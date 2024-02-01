@@ -5,6 +5,18 @@
     background-color: #eee;
   }
 
+  .products__in--stock {
+    &.low__stock {
+      color: orange;
+    }
+    &.critical__stock {
+      color: red;
+    }
+    &.positive__stock {
+      color: green;
+    }
+  }
+
   .mat__table--thumbnail {
     width: 100px;
     height: 70px;
