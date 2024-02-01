@@ -1,6 +1,10 @@
 .mat__table--products {
   width: 100%;
 
+  .mat__thead--products {
+    background-color: #eee;
+  }
+
   .mat__table--thumbnail {
     width: 100px;
     height: 70px;
