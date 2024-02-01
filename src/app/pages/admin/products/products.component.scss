@@ -1,3 +1,13 @@
+.section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .mat__paginator--table {
+    background-color: transparent;
+  }
+}
+
 .mat__table--products {
   width: 100%;
 
