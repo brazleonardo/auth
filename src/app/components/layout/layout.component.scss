@@ -49,6 +49,7 @@
 
 .mat__drawer--container {
   height: auto;
+  min-height: calc(100vh - 64px);
   overflow: hidden;
 
   .mat__drawer--menu {
