@@ -12,7 +12,6 @@ import { LocalStorageService } from '@@services/local-storage.service';
 import { environment } from '@@environments/environment';
 
 @Component({
-  selector: 'app-sign-in',
   standalone: true,
   imports: [
     CommonModule,
@@ -51,7 +50,7 @@ export class SignInComponent {
           this.localStorage.set(`${environment.appName}_token`, response.token);
           this.isLoading.set(false);
           this.authService.onAutheticate(true);
-          this.router.navigateByUrl("/admin/home");
+          this.router.navigateByUrl("/admin/products");
         }
       });
     }

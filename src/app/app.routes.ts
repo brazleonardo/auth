@@ -38,12 +38,12 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'products',
         pathMatch: 'full'
       },
       {
-        path: 'home',
-        loadComponent: () => import('./pages/admin/home/home.component'),
+        path: 'products',
+        loadComponent: () => import('./pages/admin/products/products.component'),
         canActivate: [authGuard],
       },
       {

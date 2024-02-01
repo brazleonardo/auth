@@ -9,13 +9,12 @@ import { ProductService } from '@@services/product.service';
 import { DataProducts, Product } from '@@interfaces/product';
 
 @Component({
-  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule, MatTableModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.scss'
 })
-export default class HomeComponent implements OnInit {
+export default class ProductsComponent implements OnInit {
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
   protected data = signal<DataProducts>({
