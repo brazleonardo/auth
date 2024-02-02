@@ -11,8 +11,16 @@
 .mat__table--products {
   width: 100%;
 
-  .mat__thead--products {
-    background-color: #eee;
+  .mat__table--head-tr {
+   th, td {
+    background-color: #ededed;
+   }
+  }
+
+  .mat__table--body-tr:nth-child(even) {
+    td {
+      background-color: #f3f3f3;
+    }
   }
 
   .products__in--stock {
@@ -32,5 +40,16 @@
     height: 70px;
     object-fit: contain;
     object-position: center;
+  }
+}
+
+.section__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 5px;
+
+  .mat__paginator--table {
+    background-color: transparent;
   }
 }
