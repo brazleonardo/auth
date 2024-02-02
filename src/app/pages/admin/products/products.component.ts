@@ -17,7 +17,7 @@ import { Product } from '@@interfaces/product';
 })
 export default class ProductsComponent implements OnInit, AfterViewInit {
   pageEvent!: PageEvent;
-  displayedColumns: string[] = ['id', 'thumbnail', 'title', 'stock', 'brand', 'category',  'price'];
+  displayedColumns: string[] = ['pos', 'thumbnail', 'title', 'stock', 'brand', 'category',  'price'];
   dataSource = new MatTableDataSource<Product>([]);
   pageSizeOptions = [5, 15, 25];
 
