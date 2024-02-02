@@ -20,7 +20,6 @@ import { environment } from '@@environments/environment';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatInputModule,
     MatButtonModule,
     MatIconModule
   ],

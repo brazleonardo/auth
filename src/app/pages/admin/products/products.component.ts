@@ -4,8 +4,9 @@ import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatRippleModule } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
 
-import { ModalComponent } from '@@components/modal/modal.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 import { AuthService } from '@@services/auth.service';
 import { ProductService } from '@@services/product.service';
@@ -25,7 +26,6 @@ import { Product } from '@@interfaces/product';
   styleUrl: './products.component.scss'
 })
 export default class ProductsComponent implements OnInit, AfterViewInit {
-  @ViewChild('modal', {static: true}) modal!: ModalComponent;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   pageEvent!: PageEvent;
@@ -42,6 +42,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
 
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
+  protected dialogDetails = inject(MatDialog);
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -108,7 +109,15 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
 
   onDetails(id: number){
     console.log(id);
-    this.modal.open();
+    const dialogRef = this.dialogDetails.open(ModalComponent, {
+      data: {
+        title: 'Editar produto'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   formatter(value: number): string {
