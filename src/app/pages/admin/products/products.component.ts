@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatRippleModule } from '@angular/material/core';
 
+import { ModalComponent } from '@@components/modal/modal.component';
 
 import { AuthService } from '@@services/auth.service';
 import { ProductService } from '@@services/product.service';
@@ -11,11 +13,21 @@ import { Product } from '@@interfaces/product';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, MatTableModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatRippleModule,
+    ModalComponent
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
 export default class ProductsComponent implements OnInit, AfterViewInit {
+  @ViewChild('modal', {static: true}) modal!: ModalComponent;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   pageEvent!: PageEvent;
   displayedColumns: string[] = ['pos', 'thumbnail', 'title', 'stock', 'brand', 'category',  'price'];
   dataSource = new MatTableDataSource<Product>([]);
@@ -33,9 +45,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -95,6 +104,11 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
     });
 
     this.getProducts();
+  }
+
+  onDetails(id: number){
+    console.log(id);
+    this.modal.open();
   }
 
   formatter(value: number): string {

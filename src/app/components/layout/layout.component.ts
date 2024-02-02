@@ -22,7 +22,7 @@ import { AuthService } from '@@services/auth.service';
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
-    DrawerComponent
+    DrawerComponent,
   ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
