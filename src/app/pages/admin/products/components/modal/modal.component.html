@@ -1,15 +1,69 @@
 <h2 mat-dialog-title>{{data.title}}</h2>
-<mat-dialog-content>
-  <form>
-    <mat-form-field class="w-full">
-      <mat-label>Título</mat-label>
-      <input matInput placeholder="Nome do produto" name="title" formControlName="title">
-    </mat-form-field>
+<mat-dialog-content class="mat__dialog--content-product">
+  <form [formGroup]="productForm" [ngClass]="{'form-loading': isLoading()}" (ngSubmit)="onSubmit()">
 
-    <mat-form-field class="w-full">
-      <mat-label>Descrição</mat-label>
-      <input matInput placeholder="Descrição do produto" name="description" formControlName="description">
-    </mat-form-field>
+    <mat-grid-list cols="2" rowHeight="3:1" gutterSize="15">
+      <mat-grid-tile colspan="2">
+        <mat-form-field class="w-full">
+          <mat-label>Título</mat-label>
+          <input matInput placeholder="Nome do produto" name="title" formControlName="title">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="2">
+        <mat-form-field class="w-full">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput placeholder="Descrição do produto" name="description" formControlName="description"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Marca</mat-label>
+          <input matInput placeholder="Nome da marca" name="brand" formControlName="brand">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Categoria</mat-label>
+          <mat-select name="category" formControlName="category">
+            <mat-option value="volvo">Volvo</mat-option>
+            <mat-option value="saab">Saab</mat-option>
+            <mat-option value="mercedes">Mercedes</mat-option>
+            <mat-option value="audi">Audi</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Preço</mat-label>
+          <input matInput placeholder="Valor do produto" name="price" formControlName="price">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Desconto</mat-label>
+          <input matInput placeholder="Desconto aplicado" name="discountPercentage" formControlName="discountPercentage">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Avaliações</mat-label>
+          <input matInput placeholder="Avaiação do produto" name="rating" formControlName="rating">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="w-full">
+          <mat-label>Estoque</mat-label>
+          <input matInput type="number" placeholder="Quantidade em estoque" name="stock" formControlName="stock">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
 
     <div class="mat__button--send">
       <button mat-flat-button color="primary" class="w-full" type="submit">
