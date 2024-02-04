@@ -10,6 +10,6 @@ export class ProductService {
   private http = inject(HttpClient);
 
   products(limit: number = 15, skip: number = 0){
-    return this.http.get<DataProducts>(`products?limit=${limit}&skip=${skip}&select=id,thumbnail,title,brand,category,price,stock`);
+    return this.http.get<DataProducts>(`products?limit=${limit}&skip=${skip}`);
   }
 }

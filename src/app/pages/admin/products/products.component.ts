@@ -107,11 +107,11 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
     this.getProducts();
   }
 
-  onDetails(id: number){
-    console.log(id);
+  onDetails(product?: Product){
     const dialogRef = this.dialogDetails.open(ModalComponent, {
       data: {
-        title: 'Editar produto'
+        title: 'Editar produto',
+        product,
       }
     });
 
