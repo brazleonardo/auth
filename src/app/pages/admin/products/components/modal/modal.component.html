@@ -62,6 +62,19 @@
           <input matInput type="number" placeholder="Quantidade em estoque" name="stock" formControlName="stock">
         </mat-form-field>
       </mat-grid-tile>
+
+      <mat-grid-tile colspan="2">
+        <div class="wrap">
+          <h3>Fotos</h3>
+          <ul class="list__thumbnail">
+            @for(image of data.product?.images; track image){
+              <li>
+                <img [src]="image" class="thumbnail__image" alt="" />
+              </li>
+            }
+          </ul>
+        </div>
+      </mat-grid-tile>
     </mat-grid-list>
 
     <div class="mat__button--send">

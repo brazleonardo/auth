@@ -36,7 +36,7 @@ export interface DialogData {
 })
 export class ModalComponent implements OnInit {
   isLoading = signal(false);
-  allCategories = signal<String[]>([]);
+  allCategories = signal<string[]>([]);
   protected categoryService = inject(CategoryService);
   protected productForm!: FormGroup;
 

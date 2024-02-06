@@ -20,4 +20,25 @@
   form {
     width: 100%;
   }
+
+  .list__thumbnail {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    li {
+      padding: 2px;
+      border: 2px solid #000;
+
+      .thumbnail__image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+        margin: 0;
+      }
+    }
+  }
+
 }
