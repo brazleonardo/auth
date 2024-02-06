@@ -110,7 +110,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   onDetails(product?: Product){
     const dialogRef = this.dialogDetails.open(ModalComponent, {
       data: {
-        title: 'Editar produto',
+        title: 'Editar Produto',
         product,
       }
     });
