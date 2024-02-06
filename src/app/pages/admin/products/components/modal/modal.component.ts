@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,7 +25,6 @@ export interface DialogData {
     CommonModule,
     FormsModule,
     MatFormFieldModule,
-    MatGridListModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
