@@ -22,7 +22,7 @@ $auth-theme: mat.define-light-theme((
   --color-accent: #{mat.get-color-from-palette($auth-accent, 500)};
   --color-warn: #{mat.get-color-from-palette($auth-warn, 500)};
   --color-success: #{mat.get-color-from-palette($auth-success, 500)};
-  --color-text-main: #333;
+  --color-text-main: #666;
 }
 
 html, body { height: 100%; }
@@ -61,6 +61,10 @@ form {
   }
 }
 
+.text__center {
+  text-align: center;
+}
+
 .w-full {
   width: 100%;
 }
@@ -73,7 +77,20 @@ form {
   width: calc(100% - 60px);
   padding: 0 30px;
 
+  * {
+    color: var(--color-text-main);
+  }
+
   .section__page--title {
     font-weight: 500;
+    color: var(--color-text-main);
+  }
+
+  button {
+    color: #fff;
+
+    span {
+      color: #fff;
+    }
   }
 }

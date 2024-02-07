@@ -49,8 +49,6 @@ export class ModalComponent implements OnInit {
       rating: new FormControl(data?.product?.rating ?? '', [Validators.required]),
       stock: new FormControl(data?.product?.stock ?? '', [Validators.required]),
     });
-
-    console.log(data)
   }
 
   ngOnInit(): void {
