@@ -23,8 +23,9 @@
         height: 48px;
         display: flex;
         align-items: center;
+        gap: 10px;
         padding: 0 30px;
-        color: #333;
+        color: var(--color-text-main);
 
         &.active {
           background-color: #eee;

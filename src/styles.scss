@@ -1,4 +1,3 @@
-
 @use '@angular/material' as mat;
 @include mat.core();
 
@@ -23,10 +22,15 @@ $auth-theme: mat.define-light-theme((
   --color-accent: #{mat.get-color-from-palette($auth-accent, 500)};
   --color-warn: #{mat.get-color-from-palette($auth-warn, 500)};
   --color-success: #{mat.get-color-from-palette($auth-success, 500)};
+  --color-text-main: #333;
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  color: var(--color-text-main);
+}
 
 a {
   text-decoration: none;
