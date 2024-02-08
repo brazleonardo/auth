@@ -22,7 +22,7 @@ export const httpInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error) => {
-      if (error instanceof HttpErrorResponse && error.status > 400) {
+      if (error instanceof HttpErrorResponse && (error.status > 400 && error.status < 405)) {
         authService.signOut();
         router.navigateByUrl('/auth/sign-in');
         return throwError(() => error);
