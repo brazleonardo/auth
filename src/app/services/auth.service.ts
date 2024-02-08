@@ -14,7 +14,11 @@ export class AuthService {
   private http = inject(HttpClient);
   private localStorage = inject(LocalStorageService);
   private router = inject(Router);
-  public isAutheticate = signal(false);
+  public isAutheticated = signal(false);
+
+  constructor() {
+    this.isAutheticated.set(!!this.localStorage.get(`${environment.appName}_token`));
+  }
 
   signIn(username: string, password: string){
     const data = {username, password, expiresInMins: 60};
@@ -26,16 +30,12 @@ export class AuthService {
   }
 
   onAutheticate(value: boolean){
-    this.isAutheticate.set(value);
+    this.isAutheticated.set(value);
   }
 
   signOut(){
     this.localStorage.remove(`${environment.appName}_token`);
     this.router.navigateByUrl('/auth/sign-in');
-  }
-
-  isLogged(){
-    return !!this.localStorage.get(`${environment.appName}_token`);
   }
 
 }

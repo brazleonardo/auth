@@ -10,6 +10,4 @@ import {MatGridListModule} from '@angular/material/grid-list';
   templateUrl: './layout-auth.component.html',
   styleUrl: './layout-auth.component.scss'
 })
-export class LayoutAuthComponent {
-
-}
+export class LayoutAuthComponent {}
