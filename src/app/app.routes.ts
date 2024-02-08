@@ -35,6 +35,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: LayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -44,17 +45,14 @@ export const routes: Routes = [
       {
         path: 'products',
         loadComponent: () => import('./pages/admin/products/products.component'),
-        canActivate: [authGuard],
       },
       {
         path: 'categories',
         loadComponent: () => import('./pages/admin/categories/categories.component'),
-        canActivate: [authGuard],
       },
       {
         path: 'profile',
         loadComponent: () => import('./pages/admin/profile/profile.component'),
-        canActivate: [authGuard],
       },
     ]
   },

@@ -5,22 +5,24 @@ import { throwError, catchError } from 'rxjs';
 
 import { AuthService } from '@@services/auth.service';
 import { environment } from '@@environments/environment';
+import { LocalStorageService } from './local-storage.service';
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem(`${environment.appName}_token`);
-  const  authService = inject(AuthService);
+  const localStorageService = inject(LocalStorageService);
+  const authService = inject(AuthService);
   const router = inject(Router);
+  const token = localStorageService.get(`${environment.appName}_token`);
 
   req = req.clone({
     url: `${environment.apiUrl}/${req.url}`,
     setHeaders: {
-      Authorization: token ? `Bearer ${token}` : '',
+      Authorization: token ? `Bearer ${JSON.parse(token)}` : '',
     }
   });
 
   return next(req).pipe(
     catchError((error) => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
+      if (error instanceof HttpErrorResponse && error.status > 400) {
         authService.signOut();
         router.navigateByUrl('/auth/sign-in');
         return throwError(() => error);

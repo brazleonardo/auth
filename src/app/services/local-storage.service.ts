@@ -10,7 +10,7 @@ export class LocalStorageService {
 
   set(key: string, value: any): boolean {
     if (this.storage) {
-      this.storage.setItem(key, value);
+      this.storage.setItem(key, JSON.stringify(value));
       return true;
     }
     return false;

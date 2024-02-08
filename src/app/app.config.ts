@@ -17,6 +17,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch()),
     provideHttpClient(withInterceptors([httpInterceptor])),
-    {provide: MatPaginatorIntl, useFactory: getPaginatorIntl}
+    {
+      provide: MatPaginatorIntl,
+      useFactory: getPaginatorIntl
+    }
   ]
 };

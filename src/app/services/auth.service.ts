@@ -34,4 +34,8 @@ export class AuthService {
     this.router.navigateByUrl('/auth/sign-in');
   }
 
+  isLogged(){
+    return !!this.localStorage.get(`${environment.appName}_token`);
+  }
+
 }
