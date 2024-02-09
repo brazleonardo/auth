@@ -10,7 +10,6 @@ import { provideHttpClient, withFetch, withInterceptors } from "@angular/common/
 import { httpInterceptor } from '@@services/http.interceptor';
 import { getPaginatorIntl } from '@@helpers/matTranslate.helper';
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),

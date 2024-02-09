@@ -10,7 +10,8 @@ export const signInGuard: CanActivateFn = (_, state) => {
   const hasToken = !!localStorage.get(`${environment.appName}_token`);
 
   if(hasToken && state.url === '/auth/sign-in'){
-    return router.createUrlTree(['/admin/products']);
+    router.navigate(['/admin/products']);
+    return false;
   }
 
   return true;
