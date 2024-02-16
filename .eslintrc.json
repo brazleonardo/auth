@@ -1,13 +1,48 @@
 {
-  "parser": "@typescript-eslint/parser", // Especifica o analisador ESLint
-  "extends": ["prettier", "plugin:prettier/recommended"],
-  "parserOptions": {
-    "ecmaVersion": 2023, // Permite a análise de recursos ECMAScript modernos
-    "sourceType": "module" // Permite o uso de importações
-  },
-  "rules": {
-    // Local para especificar regras ESLint.
-    // Pode ser usado para substituir regras especificadas nas configurações estendidas.
-    // Com o tempo e pesquisando você aprende a colocar regras aqui
-  }
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
 }
