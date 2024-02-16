@@ -1,26 +1,34 @@
-<h2 mat-dialog-title class="mat__modal--title">{{data.title}}</h2>
+<h2 mat-dialog-title class="mat__modal--title">{{ data.title }}</h2>
 <mat-dialog-content class="mat__dialog--content-product">
-  <form [formGroup]="productForm" [ngClass]="{'form-loading': isLoading()}" (ngSubmit)="onSubmit()">
-
+  <form
+    [formGroup]="productForm"
+    [ngClass]="{ 'form-loading': isLoading() }"
+    (ngSubmit)="onSubmit()"
+  >
     <div class="grid__container">
       <div class="grid__col w-full">
         <mat-form-field class="w-full">
           <mat-label>Título</mat-label>
-          <input matInput placeholder="Nome do produto" name="title" formControlName="title">
+          <input matInput placeholder="Nome do produto" name="title" formControlName="title" />
         </mat-form-field>
       </div>
 
       <div class="grid__col w-full">
         <mat-form-field class="w-full">
           <mat-label>Descrição</mat-label>
-          <textarea matInput placeholder="Descrição do produto" name="description" formControlName="description"></textarea>
+          <textarea
+            matInput
+            placeholder="Descrição do produto"
+            name="description"
+            formControlName="description"
+          ></textarea>
         </mat-form-field>
       </div>
 
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Marca</mat-label>
-          <input matInput placeholder="Nome da marca" name="brand" formControlName="brand">
+          <input matInput placeholder="Nome da marca" name="brand" formControlName="brand" />
         </mat-form-field>
       </div>
 
@@ -28,8 +36,8 @@
         <mat-form-field class="w-full">
           <mat-label>Categoria</mat-label>
           <mat-select name="category" formControlName="category">
-            @for(category of allCategories(); track category) {
-              <mat-option [value]="category">{{category}}</mat-option>
+            @for (category of allCategories(); track category) {
+              <mat-option [value]="category">{{ category }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
@@ -38,28 +46,44 @@
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Preço</mat-label>
-          <input matInput placeholder="Valor do produto" name="price" formControlName="price">
+          <input matInput placeholder="Valor do produto" name="price" formControlName="price" />
         </mat-form-field>
       </div>
 
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Desconto</mat-label>
-          <input matInput placeholder="Desconto aplicado" name="discountPercentage" formControlName="discountPercentage">
+          <input
+            matInput
+            placeholder="Desconto aplicado"
+            name="discountPercentage"
+            formControlName="discountPercentage"
+          />
         </mat-form-field>
       </div>
 
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Avaliações</mat-label>
-          <input matInput placeholder="Avaiação do produto" name="rating" formControlName="rating">
+          <input
+            matInput
+            placeholder="Avaiação do produto"
+            name="rating"
+            formControlName="rating"
+          />
         </mat-form-field>
       </div>
 
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Estoque</mat-label>
-          <input matInput type="number" placeholder="Quantidade em estoque" name="stock" formControlName="stock">
+          <input
+            matInput
+            type="number"
+            placeholder="Quantidade em estoque"
+            name="stock"
+            formControlName="stock"
+          />
         </mat-form-field>
       </div>
 
@@ -67,7 +91,7 @@
         <div class="wrap">
           <h3 class="mat__modal--subtitle">Fotos</h3>
           <ul class="list__thumbnail">
-            @for(image of data.product?.images; track image){
+            @for (image of data.product?.images; track image) {
               <li>
                 <img [src]="image" class="thumbnail__image" alt="" />
               </li>
@@ -77,9 +101,7 @@
       </div>
       <div class="grid__col w-full">
         <div class="mat__button--send">
-          <button mat-flat-button color="primary" class="w-full" type="submit">
-            Salvar
-          </button>
+          <button mat-flat-button color="primary" class="w-full" type="submit">Salvar</button>
         </div>
       </div>
     </div>
