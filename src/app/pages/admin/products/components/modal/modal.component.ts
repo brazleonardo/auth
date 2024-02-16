@@ -1,18 +1,24 @@
-import { Component, Inject, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, Inject, OnInit, inject, signal } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogTitle } from '@angular/material/dialog'
+import {
+  ReactiveFormsModule,
+  FormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { MatButtonModule } from '@angular/material/button'
 
-import { CategoryService } from '@@services/category.service';
-import { Product } from '@@interfaces/product';
+import { CategoryService } from '@@services/category.service'
+import { Product } from '@@interfaces/product'
 
 export interface DialogData {
-  title: string;
-  product?: Product;
+  title: string
+  product?: Product
 }
 
 @Component({
@@ -30,13 +36,13 @@ export interface DialogData {
     MatButtonModule,
   ],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  styleUrl: './modal.component.scss',
 })
 export class ModalComponent implements OnInit {
-  isLoading = signal(false);
-  allCategories = signal<string[]>([]);
-  protected categoryService = inject(CategoryService);
-  protected productForm!: FormGroup;
+  isLoading = signal(false)
+  allCategories = signal<string[]>([])
+  protected categoryService = inject(CategoryService)
+  protected productForm!: FormGroup
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.productForm = new FormGroup({
@@ -45,28 +51,30 @@ export class ModalComponent implements OnInit {
       brand: new FormControl(data?.product?.brand ?? '', [Validators.required]),
       category: new FormControl(data?.product?.category ?? '', [Validators.required]),
       price: new FormControl(data?.product?.price, [Validators.required]),
-      discountPercentage: new FormControl(data?.product?.discountPercentage ?? '', [Validators.required]),
+      discountPercentage: new FormControl(data?.product?.discountPercentage ?? '', [
+        Validators.required,
+      ]),
       rating: new FormControl(data?.product?.rating ?? '', [Validators.required]),
       stock: new FormControl(data?.product?.stock ?? '', [Validators.required]),
-    });
+    })
   }
 
   ngOnInit(): void {
-      this.getCategories();
+    this.getCategories()
   }
 
-  getCategories(){
+  getCategories() {
     this.categoryService.categories().subscribe({
       next: (result) => {
-        this.allCategories.set(result);
-      }
-    });
+        this.allCategories.set(result)
+      },
+    })
   }
 
-  onSubmit(){
-    if(this.productForm.valid){
-      this.isLoading.set(true);
-      console.log(this.productForm.value);
+  onSubmit() {
+    if (this.productForm.valid) {
+      this.isLoading.set(true)
+      console.log(this.productForm.value)
     }
   }
 }

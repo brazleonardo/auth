@@ -19,10 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "paths": {
       "@@assets/*": ["./src/assets/*"],
       "@@components/*": ["./src/app/components/*"],
@@ -31,7 +28,7 @@
       "@@guards/*": ["./src/app/guards/*"],
       "@@helpers/*": ["./src/app/helpers/*"],
       "@@interfaces/*": ["./src/app/interfaces/*"],
-      "@@services/*": ["./src/app/services/*"],
+      "@@services/*": ["./src/app/services/*"]
     }
   },
   "angularCompilerOptions": {
