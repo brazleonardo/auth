@@ -8,7 +8,7 @@ export class LocalStorageService {
   private document = inject(DOCUMENT)
   private storage = this.document.defaultView?.localStorage
 
-  set(key: string, value: any): boolean {
+  set(key: string, value: unknown): boolean {
     if (this.storage) {
       this.storage.setItem(key, JSON.stringify(value))
       return true
