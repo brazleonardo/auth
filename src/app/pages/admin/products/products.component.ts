@@ -83,17 +83,17 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
     })
   }
 
-  handlePageEvent(e: PageEvent) {
-    this.pageEvent = e
-    this.pageLength.set(e.length)
-    this.pageSize.set(e.pageSize)
-    this.pageIndex.set(e.pageIndex)
+  handlePageEvent(event: PageEvent) {
+    this.pageEvent = event
+    this.pageLength.set(event.length)
+    this.pageSize.set(event.pageSize)
+    this.pageIndex.set(event.pageIndex)
 
-    this.limit.set(e.pageSize)
-    this.skip.set(e.pageIndex * e.pageSize)
+    this.limit.set(event.pageSize)
+    this.skip.set(event.pageIndex * event.pageSize)
 
     const queryParams = {
-      limit: e.pageSize,
+      limit: event.pageSize,
       skip: this.skip(),
     }
 
