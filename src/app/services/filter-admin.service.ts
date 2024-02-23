@@ -8,11 +8,7 @@ import { FilterAdmin } from '@@models/filter-admin.models'
 })
 export class FilterAdminService {
   private hasFilter: FilterAdmin | null = null
-  private hasFilter$: BehaviorSubject<FilterAdmin | null>
-
-  constructor() {
-    this.hasFilter$ = new BehaviorSubject<FilterAdmin | null>(null)
-  }
+  private hasFilter$ = new BehaviorSubject<FilterAdmin | null>(null)
 
   get getHasFilter() {
     return this.hasFilter$.asObservable()
