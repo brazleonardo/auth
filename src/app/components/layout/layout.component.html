@@ -19,7 +19,14 @@
         />
       </label>
       @if (hasFilter.options) {
-        <mat-icon matSuffix class="mat__icon--tune">tune</mat-icon>
+        <button
+          mat-icon-button
+          type="button"
+          class="mat__btn--options"
+          aria-label="Abrir mais opções"
+        >
+          <mat-icon matSuffix class="mat__icon--tune">tune</mat-icon>
+        </button>
       }
     </div>
   }
