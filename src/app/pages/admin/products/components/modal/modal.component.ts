@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button'
 
 import { CategoryService } from '@@services/category.service'
-import { Product } from '@@interfaces/product'
+import { Product } from '@@models/product.models'
 
 export interface DialogData {
   title: string

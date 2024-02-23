@@ -10,7 +10,7 @@ import { ModalComponent } from './components/modal/modal.component'
 
 import { AuthService } from '@@services/auth.service'
 import { ProductService } from '@@services/product.service'
-import { Product } from '@@interfaces/product'
+import { Product } from '@@models/product.models'
 
 @Component({
   standalone: true,

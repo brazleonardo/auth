@@ -27,7 +27,8 @@
       "@@environments/*": ["./src/environments/*"],
       "@@guards/*": ["./src/app/guards/*"],
       "@@helpers/*": ["./src/app/helpers/*"],
-      "@@interfaces/*": ["./src/app/interfaces/*"],
+      "@@models/*": ["./src/app/models/*"],
+      "@@interceptor/*": ["./src/app/interceptor/*"],
       "@@services/*": ["./src/app/services/*"]
     }
   },

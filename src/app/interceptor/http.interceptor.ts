@@ -5,7 +5,7 @@ import { throwError, catchError } from 'rxjs'
 
 import { AuthService } from '@@services/auth.service'
 import { environment } from '@@environments/environment'
-import { LocalStorageService } from './local-storage.service'
+import { LocalStorageService } from '@@services/local-storage.service'
 
 export const httpInterceptor: HttpInterceptorFn = (req, next) => {
   const localStorageService = inject(LocalStorageService)

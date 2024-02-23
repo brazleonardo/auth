@@ -4,8 +4,8 @@ import { Router } from '@angular/router'
 
 import { LocalStorageService } from '@@services/local-storage.service'
 import { environment } from '@@environments/environment'
-import { Auth } from '@@interfaces/auth'
-import { User } from '@@interfaces/user'
+import { Auth } from '@@models/auth.models'
+import { User } from '@@models/user.models'
 
 @Injectable({
   providedIn: 'root',

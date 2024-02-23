@@ -7,7 +7,7 @@ import { provideClientHydration } from '@angular/platform-browser'
 import { provideAnimations } from '@angular/platform-browser/animations'
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http'
 
-import { httpInterceptor } from '@@services/http.interceptor'
+import { httpInterceptor } from '@@interceptor/http.interceptor'
 import { getPaginatorIntl } from '@@helpers/matTranslate.helper'
 
 export const appConfig: ApplicationConfig = {

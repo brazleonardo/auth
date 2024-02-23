@@ -14,7 +14,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatDividerModule } from '@angular/material/divider'
 
 import { AuthService } from '@@services/auth.service'
-import { User } from '@@interfaces/user'
+import { User } from '@@models/user.models'
 
 @Component({
   standalone: true,
