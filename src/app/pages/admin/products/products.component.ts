@@ -16,10 +16,10 @@ import { MatDialog } from '@angular/material/dialog'
 
 import { ModalComponent } from './components/modal/modal.component'
 
+import { FilterAdminService } from '@@services/filter-admin.service'
 import { AuthService } from '@@services/auth.service'
 import { ProductService } from '@@services/product.service'
 import { Product } from '@@models/product.models'
-import { FilterAdminService } from '@@services/filter-admin.service'
 
 @Component({
   standalone: true,
@@ -37,10 +37,18 @@ import { FilterAdminService } from '@@services/filter-admin.service'
 export default class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
-  pageEvent!: PageEvent
-  displayedColumns: string[] = ['pos', 'thumbnail', 'title', 'stock', 'brand', 'category', 'price']
-  dataSource = new MatTableDataSource<Product>([])
-  pageSizeOptions = [5, 15, 25]
+  protected pageEvent!: PageEvent
+  protected displayedColumns: string[] = [
+    'pos',
+    'thumbnail',
+    'title',
+    'stock',
+    'brand',
+    'category',
+    'price',
+  ]
+  protected dataSource = new MatTableDataSource<Product>([])
+  protected pageSizeOptions = [5, 15, 25]
 
   protected pageLength = signal(0)
   protected pageIndex = signal(0)
@@ -49,11 +57,10 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   protected limit = signal(15)
   protected skip = signal(0)
 
-  protected filterAdminService = inject(FilterAdminService)
-  protected authService = inject(AuthService)
-  protected productService = inject(ProductService)
-  protected dialogDetails = inject(MatDialog)
-
+  private filterAdminService = inject(FilterAdminService)
+  private authService = inject(AuthService)
+  private productService = inject(ProductService)
+  private dialogDetails = inject(MatDialog)
   private route = inject(ActivatedRoute)
   private router = inject(Router)
 
@@ -62,7 +69,10 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   ngOnInit() {
-    this.filterAdminService.setHasFilter = true
+    this.filterAdminService.setHasFilter = {
+      search: true,
+      options: true,
+    }
     this.getUser()
     this.route.queryParamMap.subscribe((params) => {
       const paramLimit = params.get('limit')
@@ -135,6 +145,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   ngOnDestroy() {
-    this.filterAdminService.setHasFilter = false
+    this.filterAdminService.setHasFilter = null
   }
 }

@@ -11,6 +11,7 @@ import { DrawerComponent } from '@@components/drawer/drawer.component'
 
 import { AuthService } from '@@services/auth.service'
 import { FilterAdminService } from '@@services/filter-admin.service'
+import { FilterAdmin } from '@@models/filter-admin.models'
 
 @Component({
   selector: 'app-layout',
@@ -32,7 +33,7 @@ export class LayoutComponent implements AfterContentChecked {
   private changeDetector = inject(ChangeDetectorRef)
   private authService = inject(AuthService)
   private filterAdminService = inject(FilterAdminService)
-  protected hasFilter = false
+  protected hasFilter: FilterAdmin | null = null
 
   constructor() {
     this.filterAdminService.getHasFilter.subscribe((response) => (this.hasFilter = response))
