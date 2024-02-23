@@ -1,4 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild, inject, signal } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  inject,
+  signal,
+  OnDestroy,
+} from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule, ActivatedRoute, Router } from '@angular/router'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
@@ -11,6 +19,7 @@ import { ModalComponent } from './components/modal/modal.component'
 import { AuthService } from '@@services/auth.service'
 import { ProductService } from '@@services/product.service'
 import { Product } from '@@models/product.models'
+import { FilterAdminService } from '@@services/filter-admin.service'
 
 @Component({
   standalone: true,
@@ -25,7 +34,7 @@ import { Product } from '@@models/product.models'
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
-export default class ProductsComponent implements OnInit, AfterViewInit {
+export default class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
   pageEvent!: PageEvent
@@ -40,6 +49,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   protected limit = signal(15)
   protected skip = signal(0)
 
+  protected filterAdminService = inject(FilterAdminService)
   protected authService = inject(AuthService)
   protected productService = inject(ProductService)
   protected dialogDetails = inject(MatDialog)
@@ -52,6 +62,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.filterAdminService.setHasFilter = true
     this.getUser()
     this.route.queryParamMap.subscribe((params) => {
       const paramLimit = params.get('limit')
@@ -121,5 +132,9 @@ export default class ProductsComponent implements OnInit, AfterViewInit {
 
   formatter(value: number): string {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+  }
+
+  ngOnDestroy() {
+    this.filterAdminService.setHasFilter = false
   }
 }

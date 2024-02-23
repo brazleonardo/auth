@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, ChangeDetectorRef, AfterContentChecked } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { DrawerComponent } from '@@components/drawer/drawer.component'
 
 import { AuthService } from '@@services/auth.service'
+import { FilterAdminService } from '@@services/filter-admin.service'
 
 @Component({
   selector: 'app-layout',
@@ -27,10 +28,21 @@ import { AuthService } from '@@services/auth.service'
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
+export class LayoutComponent implements AfterContentChecked {
+  private changeDetector = inject(ChangeDetectorRef)
   protected authService = inject(AuthService)
+  protected filterAdminService = inject(FilterAdminService)
+  protected hasFilter = false
+
+  constructor() {
+    this.filterAdminService.getHasFilter.subscribe((response) => (this.hasFilter = response))
+  }
 
   onLogout() {
     this.authService.signOut()
+  }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges()
   }
 }

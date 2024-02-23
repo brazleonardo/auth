@@ -6,10 +6,15 @@
     <span>Auth</span>
   </div>
 
-  <label for="main__search" class="mat__search--input">
-    <input type="text" id="main__search" placeholder="Buscar" required />
-    <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
-  </label>
+  <div class="mat__search--input">
+    <label for="main__search">
+      <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
+      <input type="text" id="main__search" placeholder="Buscar" required />
+    </label>
+    @if (hasFilter) {
+      <mat-icon matSuffix class="mat__icon--tune">tune</mat-icon>
+    }
+  </div>
 
   <div class="mat__menu-content">
     <button mat-icon-button aria-label="Configurações">

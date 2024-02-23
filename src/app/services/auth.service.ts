@@ -14,10 +14,18 @@ export class AuthService {
   private http = inject(HttpClient)
   private localStorage = inject(LocalStorageService)
   private router = inject(Router)
-  public isAutheticated = signal(false)
+  private isAutheticated = signal(false)
 
   constructor() {
     this.isAutheticated.set(!!this.localStorage.get(`${environment.appName}_token`))
+  }
+
+  get getIsAutheticate() {
+    return this.isAutheticated()
+  }
+
+  set setIsAutheticate(value: boolean) {
+    this.isAutheticated.set(value)
   }
 
   signIn(username: string, password: string) {
@@ -27,10 +35,6 @@ export class AuthService {
 
   me() {
     return this.http.get<User>('auth/me')
-  }
-
-  onAutheticate(value: boolean) {
-    this.isAutheticated.set(value)
   }
 
   signOut() {
