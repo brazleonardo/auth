@@ -16,6 +16,7 @@
           placeholder="Buscar"
           required
           [disabled]="!hasFilter.search"
+          [ngClass]="{ 'has__filter--options': hasFilter.options }"
         />
         <span class="bg__search"></span>
         <span class="inner__wrap--search"></span>

@@ -1,4 +1,5 @@
 import { Component, inject, ChangeDetectorRef, AfterContentChecked } from '@angular/core'
+import { NgClass } from '@angular/common'
 import { RouterOutlet } from '@angular/router'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -17,6 +18,7 @@ import { FilterAdmin } from '@@models/filter-admin.models'
   selector: 'app-layout',
   standalone: true,
   imports: [
+    NgClass,
     RouterOutlet,
     MatToolbarModule,
     MatSidenavModule,
