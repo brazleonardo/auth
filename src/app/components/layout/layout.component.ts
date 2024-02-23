@@ -30,8 +30,8 @@ import { FilterAdminService } from '@@services/filter-admin.service'
 })
 export class LayoutComponent implements AfterContentChecked {
   private changeDetector = inject(ChangeDetectorRef)
-  protected authService = inject(AuthService)
-  protected filterAdminService = inject(FilterAdminService)
+  private authService = inject(AuthService)
+  private filterAdminService = inject(FilterAdminService)
   protected hasFilter = false
 
   constructor() {
@@ -42,7 +42,7 @@ export class LayoutComponent implements AfterContentChecked {
     this.authService.signOut()
   }
 
-  ngAfterContentChecked(): void {
+  ngAfterContentChecked() {
     this.changeDetector.detectChanges()
   }
 }
