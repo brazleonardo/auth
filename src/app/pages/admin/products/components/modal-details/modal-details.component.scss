@@ -27,6 +27,7 @@
 .mat__dialog--content-product {
   width: 100%;
   max-height: calc(100vh - 56px);
+  position: relative;
 
   form {
     width: 100%;

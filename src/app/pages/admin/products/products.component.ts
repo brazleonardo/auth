@@ -14,6 +14,7 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 import { MatRippleModule } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
 
+import { ModalFilterComponent } from './components/modal-filter/modal-filter.component'
 import { ModalDetailsComponent } from './components/modal-details/modal-details.component'
 
 import { FilterAdminService } from '@@services/filter-admin.service'
@@ -29,6 +30,7 @@ import { Product } from '@@models/product.models'
     MatTableModule,
     MatPaginatorModule,
     MatRippleModule,
+    ModalFilterComponent,
     ModalDetailsComponent,
   ],
   templateUrl: './products.component.html',
@@ -60,7 +62,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   private filterAdminService = inject(FilterAdminService)
   private authService = inject(AuthService)
   private productService = inject(ProductService)
-  private dialogDetails = inject(MatDialog)
+  private dialogModal = inject(MatDialog)
   private route = inject(ActivatedRoute)
   private router = inject(Router)
 
@@ -87,6 +89,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     })
 
     this.getProducts()
+    this.onWachModalFilter()
   }
 
   getUser() {
@@ -127,8 +130,23 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     this.getProducts()
   }
 
+  onWachModalFilter() {
+    this.filterAdminService.getOpenModal.subscribe((openModal) => {
+      if (openModal) {
+        const dialogRef = this.dialogModal.open(ModalFilterComponent, {
+          position: { top: '80px' },
+        })
+
+        dialogRef.afterClosed().subscribe(() => {
+          this.filterAdminService.setOpenModal = false
+        })
+      }
+    })
+  }
+
   onDetails(product?: Product) {
-    const dialogRef = this.dialogDetails.open(ModalDetailsComponent, {
+    const dialogRef = this.dialogModal.open(ModalDetailsComponent, {
+      position: { top: '0', right: '0' },
       data: {
         title: 'Editar Produto',
         product,
