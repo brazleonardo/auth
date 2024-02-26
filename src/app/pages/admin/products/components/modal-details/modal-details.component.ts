@@ -35,10 +35,10 @@ export interface DialogData {
     MatSelectModule,
     MatButtonModule,
   ],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
+  templateUrl: './modal-details.component.html',
+  styleUrl: './modal-details.component.scss',
 })
-export class ModalComponent implements OnInit {
+export class ModalDetailsComponent implements OnInit {
   isLoading = signal(false)
   allCategories = signal<string[]>([])
   protected categoryService = inject(CategoryService)

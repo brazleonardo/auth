@@ -41,6 +41,10 @@ export class LayoutComponent implements AfterContentChecked {
     this.filterAdminService.getHasFilter.subscribe((response) => (this.hasFilter = response))
   }
 
+  onOpenModalFilter() {
+    this.filterAdminService.setOpenModal = true
+  }
+
   onLogout() {
     this.authService.signOut()
   }

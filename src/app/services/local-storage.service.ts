@@ -8,12 +8,10 @@ export class LocalStorageService {
   private document = inject(DOCUMENT)
   private storage = this.document.defaultView?.localStorage
 
-  set(key: string, value: unknown): boolean {
+  set(key: string, value: unknown) {
     if (this.storage) {
       this.storage.setItem(key, JSON.stringify(value))
-      return true
     }
-    return false
   }
 
   get(key: string) {
@@ -23,19 +21,15 @@ export class LocalStorageService {
     return null
   }
 
-  remove(key: string): boolean {
+  remove(key: string) {
     if (this.storage) {
       this.storage.removeItem(key)
-      return true
     }
-    return false
   }
 
-  clear(): boolean {
+  clear() {
     if (this.storage) {
       this.storage.clear()
-      return true
     }
-    return false
   }
 }

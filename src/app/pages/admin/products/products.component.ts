@@ -14,7 +14,7 @@ import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/p
 import { MatRippleModule } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
 
-import { ModalComponent } from './components/modal/modal.component'
+import { ModalDetailsComponent } from './components/modal-details/modal-details.component'
 
 import { FilterAdminService } from '@@services/filter-admin.service'
 import { AuthService } from '@@services/auth.service'
@@ -29,7 +29,7 @@ import { Product } from '@@models/product.models'
     MatTableModule,
     MatPaginatorModule,
     MatRippleModule,
-    ModalComponent,
+    ModalDetailsComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -128,7 +128,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   onDetails(product?: Product) {
-    const dialogRef = this.dialogDetails.open(ModalComponent, {
+    const dialogRef = this.dialogDetails.open(ModalDetailsComponent, {
       data: {
         title: 'Editar Produto',
         product,

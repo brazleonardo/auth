@@ -7,15 +7,22 @@ import { FilterAdmin } from '@@models/filter-admin.models'
   providedIn: 'root',
 })
 export class FilterAdminService {
-  private hasFilter: FilterAdmin | null = null
   private hasFilter$ = new BehaviorSubject<FilterAdmin | null>(null)
+  private openModal$ = new BehaviorSubject<boolean>(false)
 
   get getHasFilter() {
     return this.hasFilter$.asObservable()
   }
 
   set setHasFilter(value: FilterAdmin | null) {
-    this.hasFilter = value
-    this.hasFilter$.next(this.hasFilter)
+    this.hasFilter$.next(value)
+  }
+
+  get getOpenModal() {
+    return this.openModal$.asObservable()
+  }
+
+  set setOpenModal(value: boolean) {
+    this.openModal$.next(value)
   }
 }
