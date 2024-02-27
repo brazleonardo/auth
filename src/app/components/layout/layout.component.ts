@@ -57,13 +57,14 @@ export class LayoutComponent implements AfterContentChecked {
 
   onSearch(value: string) {
     const queryParams = { search: value }
-    this.router.navigate([], {
+    if (value === '') {
+      return this.router.navigate([])
+    }
+    return this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     })
-
-    return value
   }
 
   onOpenModalFilter() {
