@@ -22,5 +22,6 @@ export interface DataProducts {
 export interface ParamsProducts {
   skip?: number | string
   limit?: number | string
+  search?: string
   category?: string
 }

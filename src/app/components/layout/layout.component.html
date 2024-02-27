@@ -15,6 +15,7 @@
           id="main__search"
           placeholder="Buscar"
           required
+          [formControl]="searchForm"
           [disabled]="!hasFilter.search"
           [ngClass]="{ 'has__filter--options': hasFilter.options }"
         />

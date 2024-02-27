@@ -14,8 +14,18 @@ export class ProductService {
     return this.http.get<DataProducts>(`products?limit=${limit}&skip=${skip}`)
   }
 
+  productsBySearch(params: ParamsProducts) {
+    const { limit, skip, category } = params
+    return this.http.get<DataProducts>(`products/category/${category}?limit=${limit}&skip=${skip}`)
+  }
+
   productsByCategory(params: ParamsProducts) {
     const { limit, skip, category } = params
     return this.http.get<DataProducts>(`products/category/${category}?limit=${limit}&skip=${skip}`)
+  }
+
+  searchByProducts(params: ParamsProducts) {
+    const { limit, skip, search } = params
+    return this.http.get<DataProducts>(`products/search?q=${search}&limit=${limit}&skip=${skip}`)
   }
 }

@@ -71,10 +71,16 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     map((value) => {
       const limit = value.get('limit') ?? 15
       const skip = value.get('skip') ?? 0
+      const search = value.get('search') ?? ''
       const category = value.get('category') ?? ''
-      return { limit, skip, category }
+      return { limit, skip, search, category }
     }),
     switchMap((params) => {
+      if (params.search) {
+        return this.productService
+          .searchByProducts(params)
+          .pipe(map((response) => this.getProducts(response)))
+      }
       if (params.category) {
         return this.productService
           .productsByCategory(params)
