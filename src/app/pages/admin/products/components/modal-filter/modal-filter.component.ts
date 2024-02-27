@@ -68,6 +68,13 @@ export class ModalFilterComponent implements OnInit {
     })
   }
 
+  onClearFilter() {
+    this.router.navigate([])
+
+    this.dialogModal.closeAll()
+    this.filterAdminService.setOpenModal = false
+  }
+
   onSubmit() {
     if (this.filterForm.valid) {
       const queryParams = { category: this.filterForm.value.category }

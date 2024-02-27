@@ -22,6 +22,15 @@
           <div class="mat__button--send">
             <button
               mat-flat-button
+              color="warn"
+              class="w-full"
+              type="button"
+              (click)="onClearFilter()"
+            >
+              Limpar Filtro
+            </button>
+            <button
+              mat-flat-button
               color="primary"
               class="w-full"
               type="submit"
