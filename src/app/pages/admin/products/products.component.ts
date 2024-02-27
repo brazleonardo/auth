@@ -39,6 +39,13 @@ import { Product } from '@@models/product.models'
 export default class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
+  private filterAdminService = inject(FilterAdminService)
+  private authService = inject(AuthService)
+  private productService = inject(ProductService)
+  private dialogModal = inject(MatDialog)
+  private route = inject(ActivatedRoute)
+  private router = inject(Router)
+
   protected pageEvent!: PageEvent
   protected displayedColumns: string[] = [
     'pos',
@@ -58,13 +65,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
 
   protected limit = signal(15)
   protected skip = signal(0)
-
-  private filterAdminService = inject(FilterAdminService)
-  private authService = inject(AuthService)
-  private productService = inject(ProductService)
-  private dialogModal = inject(MatDialog)
-  private route = inject(ActivatedRoute)
-  private router = inject(Router)
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator
