@@ -9,6 +9,7 @@ import {
 } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule, ActivatedRoute, Router } from '@angular/router'
+import { map, switchMap } from 'rxjs'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator'
 import { MatRippleModule } from '@angular/material/core'
@@ -20,7 +21,7 @@ import { ModalDetailsComponent } from './components/modal-details/modal-details.
 import { FilterAdminService } from '@@services/filter-admin.service'
 import { AuthService } from '@@services/auth.service'
 import { ProductService } from '@@services/product.service'
-import { Product } from '@@models/product.models'
+import { Product, DataProducts } from '@@models/product.models'
 
 @Component({
   standalone: true,
@@ -43,7 +44,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   private authService = inject(AuthService)
   private productService = inject(ProductService)
   private dialogModal = inject(MatDialog)
-  private route = inject(ActivatedRoute)
+  private activatedRoute = inject(ActivatedRoute)
   private router = inject(Router)
 
   protected pageEvent!: PageEvent
@@ -66,6 +67,26 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
   protected limit = signal(15)
   protected skip = signal(0)
 
+  protected products$ = this.activatedRoute.queryParamMap.pipe(
+    map((value) => {
+      const limit = value.get('limit') ?? 15
+      const skip = value.get('skip') ?? 0
+      const category = value.get('category') ?? ''
+      return { limit, skip, category }
+    }),
+    switchMap((params) => {
+      if (params.category) {
+        return this.productService
+          .productsByCategory(params)
+          .pipe(map((response) => this.getProducts(response)))
+      }
+
+      return this.productService
+        .products(params)
+        .pipe(map((response) => this.getProducts(response)))
+    }),
+  )
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator
   }
@@ -76,7 +97,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
       options: true,
     }
     this.getUser()
-    this.route.queryParamMap.subscribe((params) => {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
       const paramLimit = params.get('limit')
       const paramSkip = params.get('skip')
       if (paramLimit && this.pageSizeOptions.includes(Number(paramLimit))) {
@@ -88,7 +109,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
       }
     })
 
-    this.getProducts()
     this.onWachModalFilter()
   }
 
@@ -96,15 +116,13 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     this.authService.me().subscribe()
   }
 
-  getProducts() {
-    this.productService.products(this.limit(), this.skip()).subscribe({
-      next: (response) => {
-        this.pageLength.set(response.total)
-        this.pageIndex.set(response.skip / this.limit())
-        this.skip.set(response.skip)
-        this.dataSource = new MatTableDataSource<Product>(response.products)
-      },
-    })
+  getProducts(response: DataProducts) {
+    this.pageLength.set(response.total)
+    this.pageIndex.set(response.skip / this.limit())
+    this.skip.set(response.skip)
+    this.dataSource = new MatTableDataSource<Product>(response.products)
+
+    return response
   }
 
   handlePageEvent(event: PageEvent) {
@@ -122,12 +140,10 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     }
 
     this.router.navigate([], {
-      relativeTo: this.route,
+      relativeTo: this.activatedRoute,
       queryParams: queryParams,
       queryParamsHandling: 'merge',
     })
-
-    this.getProducts()
   }
 
   onWachModalFilter() {

@@ -35,7 +35,7 @@ import { FilterAdminService } from '@@services/filter-admin.service'
 export class ModalFilterComponent implements OnInit {
   isLoading = signal(false)
   allCategories = signal<string[]>([])
-  private route = inject(ActivatedRoute)
+  private activatedRoute = inject(ActivatedRoute)
   private router = inject(Router)
   private dialogModal = inject(MatDialog)
   private filterAdminService = inject(FilterAdminService)
@@ -46,15 +46,16 @@ export class ModalFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories()
-    this.getQueryParam()
   }
 
   getQueryParam() {
-    this.route.queryParamMap.subscribe((params) => {
-      const paramCategory = params.get('category')
-      if (paramCategory) {
-        this.filterForm.setValue({ category: paramCategory })
-      }
+    this.activatedRoute.queryParamMap.subscribe({
+      next: (params) => {
+        const paramCategory = params.get('category')
+        if (paramCategory) {
+          this.filterForm.setValue({ category: paramCategory })
+        }
+      },
     })
   }
 
@@ -62,6 +63,7 @@ export class ModalFilterComponent implements OnInit {
     this.categoryService.categories().subscribe({
       next: (result) => {
         this.allCategories.set(result)
+        this.getQueryParam()
       },
     })
   }
@@ -70,7 +72,7 @@ export class ModalFilterComponent implements OnInit {
     if (this.filterForm.valid) {
       const queryParams = { category: this.filterForm.value.category }
       this.router.navigate([], {
-        relativeTo: this.route,
+        relativeTo: this.activatedRoute,
         queryParams: queryParams,
         queryParamsHandling: 'merge',
       })

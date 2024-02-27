@@ -18,3 +18,9 @@ export interface DataProducts {
   skip: number
   limit: number
 }
+
+export interface ParamsProducts {
+  skip?: number | string
+  limit?: number | string
+  category?: string
+}

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 
-import { DataProducts } from '@@models/product.models'
+import { ParamsProducts, DataProducts } from '@@models/product.models'
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,13 @@ import { DataProducts } from '@@models/product.models'
 export class ProductService {
   private http = inject(HttpClient)
 
-  products(limit: number = 15, skip: number = 0) {
+  products(params: ParamsProducts) {
+    const { limit = 15, skip = 0 } = params
     return this.http.get<DataProducts>(`products?limit=${limit}&skip=${skip}`)
+  }
+
+  productsByCategory(params: ParamsProducts) {
+    const { limit, skip, category } = params
+    return this.http.get<DataProducts>(`products/category/${category}?limit=${limit}&skip=${skip}`)
   }
 }
