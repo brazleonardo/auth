@@ -45,6 +45,7 @@ export class LayoutComponent implements AfterContentChecked {
   protected searchForm = new FormControl<string>('')
 
   constructor() {
+    this.getQueryParam()
     this.filterAdminService.getHasFilter.subscribe((response) => (this.hasFilter = response))
 
     this.searchForm.valueChanges
@@ -53,6 +54,17 @@ export class LayoutComponent implements AfterContentChecked {
         exhaustMap((value) => this.onSearch(value ?? '')),
       )
       .subscribe()
+  }
+
+  getQueryParam() {
+    this.activatedRoute.queryParamMap.subscribe({
+      next: (params) => {
+        const paramSearch = params.get('search') ?? ''
+        if (paramSearch) {
+          this.searchForm.setValue(paramSearch)
+        }
+      },
+    })
   }
 
   onSearch(value: string) {
