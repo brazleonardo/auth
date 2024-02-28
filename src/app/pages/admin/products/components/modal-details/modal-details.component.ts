@@ -8,6 +8,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms'
+
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
@@ -25,6 +27,7 @@ export interface DialogData {
   selector: 'app-modal',
   standalone: true,
   imports: [
+    NgxMaskDirective,
     MatDialogModule,
     MatDialogTitle,
     ReactiveFormsModule,
@@ -35,6 +38,7 @@ export interface DialogData {
     MatSelectModule,
     MatButtonModule,
   ],
+  providers: [provideNgxMask()],
   templateUrl: './modal-details.component.html',
   styleUrl: './modal-details.component.scss',
 })

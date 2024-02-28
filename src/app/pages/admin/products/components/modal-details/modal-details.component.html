@@ -46,7 +46,17 @@
       <div class="grid__col">
         <mat-form-field class="w-full">
           <mat-label>Preço</mat-label>
-          <input matInput placeholder="Valor do produto" name="price" formControlName="price" />
+          <input
+            matInput
+            placeholder="Valor do produto"
+            name="price"
+            formControlName="price"
+            mask="separator.2"
+            [thousandSeparator]="'.'"
+            [decimalMarker]="','"
+            prefix="R$ "
+            [dropSpecialCharacters]="true"
+          />
         </mat-form-field>
       </div>
 
@@ -58,6 +68,8 @@
             placeholder="Desconto aplicado"
             name="discountPercentage"
             formControlName="discountPercentage"
+            mask="percentage"
+            suffix="%"
           />
         </mat-form-field>
       </div>
