@@ -49,6 +49,8 @@ ul {
 }
 
 form {
+  transition: all 0.3s ease-in-out;
+
   &.form-loading {
     position: relative;
     transform: scale(0.9);

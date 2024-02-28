@@ -81,6 +81,10 @@ export class ModalDetailsComponent implements OnInit {
     if (this.productForm.valid) {
       this.isLoading.set(true)
       console.log(this.productForm.value)
+
+      setTimeout(() => {
+        this.isLoading.set(false)
+      }, 1000)
     }
   }
 }
