@@ -12,6 +12,9 @@ import { RouterModule, ActivatedRoute, Router } from '@angular/router'
 import { map, switchMap } from 'rxjs'
 import { MatTableDataSource, MatTableModule } from '@angular/material/table'
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { MatMenuModule } from '@angular/material/menu'
 import { MatRippleModule } from '@angular/material/core'
 import { MatDialog } from '@angular/material/dialog'
 
@@ -32,6 +35,9 @@ import { Product, DataProducts } from '@@models/product.models'
     RouterModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
     MatRippleModule,
     ModalFilterComponent,
     ModalDetailsComponent,
@@ -172,7 +178,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     const dialogRef = this.dialogModal.open(ModalDetailsComponent, {
       position: { top: '0', right: '0' },
       data: {
-        title: 'Editar Produto',
+        title: product ? 'Editar Produto' : 'Adicionar Produto',
         product,
       },
     })

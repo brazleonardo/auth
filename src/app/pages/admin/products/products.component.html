@@ -1,7 +1,15 @@
 <section class="section__page--container">
   @if (products$ | async) {
     <header class="section__header">
-      <h1 class="section__page--title">Produtos</h1>
+      <div class="section__header--group">
+        <h1 class="section__page--title">Produtos</h1>
+        <button mat-icon-button aria-label="Abre mais opções" [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="onDetails()">Adicionar novo produto</button>
+        </mat-menu>
+      </div>
 
       <mat-paginator
         class="mat__paginator--table"
