@@ -1,7 +1,7 @@
 import { Component, inject, ChangeDetectorRef, AfterContentChecked } from '@angular/core'
 import { NgClass } from '@angular/common'
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router'
-import { FormControl, ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatSidenavModule } from '@angular/material/sidenav'
@@ -42,7 +42,7 @@ export class LayoutComponent implements AfterContentChecked {
   private authService = inject(AuthService)
   private filterAdminService = inject(FilterAdminService)
   protected hasFilter: FilterAdmin | null = null
-  protected searchForm = new FormControl<string>('')
+  protected searchForm = this.filterAdminService.searchForm
 
   constructor() {
     this.getQueryParam()

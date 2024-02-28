@@ -42,5 +42,6 @@ export default class CategoriesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.filterAdminService.setHasFilter = null
+    this.filterAdminService.searchForm.setValue('')
   }
 }

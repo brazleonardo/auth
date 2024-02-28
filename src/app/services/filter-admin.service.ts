@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { BehaviorSubject } from 'rxjs'
+import { FormControl } from '@angular/forms'
 
 import { FilterAdmin } from '@@models/filter-admin.models'
 
@@ -9,6 +10,8 @@ import { FilterAdmin } from '@@models/filter-admin.models'
 export class FilterAdminService {
   private hasFilter$ = new BehaviorSubject<FilterAdmin | null>(null)
   private openModal$ = new BehaviorSubject<boolean>(false)
+
+  public searchForm = new FormControl<string>('')
 
   get getHasFilter() {
     return this.hasFilter$.asObservable()

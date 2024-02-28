@@ -186,5 +186,6 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
 
   ngOnDestroy() {
     this.filterAdminService.setHasFilter = null
+    this.filterAdminService.searchForm.setValue('')
   }
 }
