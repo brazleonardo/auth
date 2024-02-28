@@ -184,7 +184,7 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     })
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`)
+      console.log(`Modal Fechado: ${result}`)
     })
   }
 
