@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "/admin",
+    "/admin/categories",
+    "/admin/products",
+    "/admin/profile",
+    "/auth",
+    "/auth/sign-in",
+    "/auth/sign-up"
+  ]
+}
