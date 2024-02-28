@@ -66,18 +66,6 @@ export class LayoutComponent implements AfterContentChecked {
     })
   }
 
-  // onSearch(value: string) {
-  //   const queryParams = { search: value }
-  //   if (value === '') {
-  //     return this.router.navigate([])
-  //   }
-  //   return this.router.navigate([], {
-  //     relativeTo: this.activatedRoute,
-  //     queryParams: queryParams,
-  //     queryParamsHandling: 'merge',
-  //   })
-  // }
-
   onOpenModalFilter() {
     this.filterAdminService.setOpenModal = true
   }
