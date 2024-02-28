@@ -4,6 +4,11 @@ export interface Crypto {
   network: string
 }
 
+export interface UserAuth {
+  username: string
+  password: string
+}
+
 export interface Company {
   address: Address
   department: string
