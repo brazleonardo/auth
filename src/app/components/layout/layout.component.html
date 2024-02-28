@@ -8,20 +8,23 @@
 
   @if (hasFilter) {
     <div class="mat__search--input">
-      <label for="main__search">
-        <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
-        <input
-          type="text"
-          id="main__search"
-          placeholder="Buscar"
-          required
-          [formControl]="searchForm"
-          [disabled]="!hasFilter.search"
-          [ngClass]="{ 'has__filter--options': hasFilter.options }"
-        />
-        <span class="bg__search"></span>
-        <span class="inner__wrap--search"></span>
-      </label>
+      @if (hasFilter.search) {
+        <label for="main__search">
+          <mat-icon matSuffix class="mat__icon--search">search</mat-icon>
+          <input
+            type="text"
+            id="main__search"
+            placeholder="Buscar"
+            required
+            [formControl]="searchForm"
+            [ngClass]="{ 'has__filter--options': hasFilter.options }"
+          />
+          <span class="bg__search"></span>
+          <span class="inner__wrap--search"></span>
+        </label>
+      } @else {
+        <span class="mat__search--text-label">Filtro</span>
+      }
       @if (hasFilter.options) {
         <button
           mat-icon-button
