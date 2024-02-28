@@ -1,6 +1,6 @@
 import { Component, inject, ChangeDetectorRef, AfterContentChecked } from '@angular/core'
 import { NgClass } from '@angular/common'
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router'
+import { ActivatedRoute, RouterOutlet } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -37,7 +37,6 @@ import { debounceTime, exhaustMap } from 'rxjs'
 })
 export class LayoutComponent implements AfterContentChecked {
   private activatedRoute = inject(ActivatedRoute)
-  private router = inject(Router)
   private changeDetector = inject(ChangeDetectorRef)
   private authService = inject(AuthService)
   private filterAdminService = inject(FilterAdminService)
@@ -51,7 +50,7 @@ export class LayoutComponent implements AfterContentChecked {
     this.searchForm.valueChanges
       .pipe(
         debounceTime(1000),
-        exhaustMap((value) => this.onSearch(value ?? '')),
+        exhaustMap((value) => this.filterAdminService.onSearch(value ?? '')),
       )
       .subscribe()
   }
@@ -67,17 +66,17 @@ export class LayoutComponent implements AfterContentChecked {
     })
   }
 
-  onSearch(value: string) {
-    const queryParams = { search: value }
-    if (value === '') {
-      return this.router.navigate([])
-    }
-    return this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    })
-  }
+  // onSearch(value: string) {
+  //   const queryParams = { search: value }
+  //   if (value === '') {
+  //     return this.router.navigate([])
+  //   }
+  //   return this.router.navigate([], {
+  //     relativeTo: this.activatedRoute,
+  //     queryParams: queryParams,
+  //     queryParamsHandling: 'merge',
+  //   })
+  // }
 
   onOpenModalFilter() {
     this.filterAdminService.setOpenModal = true
