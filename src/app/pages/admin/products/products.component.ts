@@ -18,6 +18,8 @@ import { MatDialog } from '@angular/material/dialog'
 import { ModalFilterComponent } from './components/modal-filter/modal-filter.component'
 import { ModalDetailsComponent } from './components/modal-details/modal-details.component'
 
+import { formatPrice } from '@@helpers/price.helper'
+
 import { FilterAdminService } from '@@services/filter-admin.service'
 import { AuthService } from '@@services/auth.service'
 import { ProductService } from '@@services/product.service'
@@ -180,8 +182,8 @@ export default class ProductsComponent implements OnInit, AfterViewInit, OnDestr
     })
   }
 
-  formatter(value: number): string {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
+  formatter(value: number) {
+    return formatPrice(value)
   }
 
   ngOnDestroy() {

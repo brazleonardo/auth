@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
 import { MatButtonModule } from '@angular/material/button'
 
+import { formatPrice } from '@@helpers/price.helper'
+
 import { CategoryService } from '@@services/category.service'
 import { Product } from '@@models/product.models'
 
@@ -54,7 +56,7 @@ export class ModalDetailsComponent implements OnInit {
       description: new FormControl(data?.product?.description ?? '', [Validators.required]),
       brand: new FormControl(data?.product?.brand ?? '', [Validators.required]),
       category: new FormControl(data?.product?.category ?? '', [Validators.required]),
-      price: new FormControl(data?.product?.price, [Validators.required]),
+      price: new FormControl(formatPrice(data?.product?.price), [Validators.required]),
       discountPercentage: new FormControl(data?.product?.discountPercentage ?? '', [
         Validators.required,
       ]),
